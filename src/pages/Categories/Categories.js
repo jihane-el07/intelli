@@ -1,99 +1,69 @@
 import React from 'react';
 import Nav from '../../Nav/Nav';
 import Footer from '../../Nav/Footer';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import "./Categories.css";
-
-const categories = [
+export default function Categories() {
+  const categories = [
     {
-      name: "MultiMedia",
-      image: "pics/pc 1.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Phones", "Personal computer", "Tablet", "Smartphones"],
-        ["Laptop", "Phone Accessories", "Headphones", "Tablet Parts"],
-        ["Phones", "Personal computer", "Tablet", "Smartphones"],
-        ["Phones", "Personal computer", "Tablet", "Smartphones"]
-      ]
+      name: "Multimedia",
+      image: "pics/cat1.png",
+      link: "/Multimedia",
+      productCount: 10
     },
     {
       name: "Household Appliances",
-      image: "pics/image 7.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Refrigerators", "Microwaves", "Dishwashers", "Cooktops"],
-        ["Dryers", "Toasters & Toaster Ovens", "Blenders & Mixers", "Air Fryers"],
-        ["Upright Vacuums", "Robot Vacuums", "Carpet Cleaners"]
-      ]
+      image: "pics/cat2.png",
+      link: "/Household Appliances",
+      productCount: 1
     },
     {
       name: "Sport",
-      image: "pics/image 2.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Sport clothes", "Dumbbell set", "Treadmill", "Traction bar"],
-        ["Protein", "Cotton", "Leather", "Shoes"],
-        ["Football (Soccer)", "Apparel (Jerseys, Shorts, etc.)", "Rackets, Bats, & Sticks", "Sports Accessories"]
-      ]
+      image: "pics/cat3.png",
+      link: "/Sport",
+      productCount: 1
     },
     {
       name: "Pets",
-      image: "pics/image 5.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Dogs", "Cats", "Birds", "Fish"],
-        ["Beds & Blankets", "Crates & Carriers", "Litter & Waste Management", "Training Tools"],
-        ["Clothing & Costumes", "Pet Technology", "Toys & Enrichment"]
-      ]
+      image: "pics/cat4.png",
+      link: "/Pets",
+      productCount: 2
     },
     {
       name: "Home And Garden",
-      image: "pics/image 6.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Home", "Villa", "Studio", "Apartment"],
-        ["Cottage", "Duplex", "Leather", "Plants & Flowers"],
-        ["Gardening Tools & Supplies", "Pots & Planters", "Soil & Fertilizers"]
-      ]
+      image: "pics/cat5.png",
+      link: "/Home And Garden",
+      productCount: 2
     },
     {
       name: "Clothes",
-      image: "pics/image 4.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Women's Clothing", "Men's Clothing", "Kids Clothing"],
-        ["Shoes", "Cotton", "Caftan"],
-        ["Leather", "Accessories"]
-      ]
+      image: "pics/cat6.png",
+      link: "/Clothes",
+      productCount: 2
     },
     {
       name: "Work And Study",
-      image: "pics/image 3.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Notebooks", "Bags", "Marker"],
-        ["Pencils", "Office", "Backpacks"],
-        ["Files"]
-      ]
+      image: "pics/cat7.png",
+      link: "/Work And Study",
+      productCount: 1
     },
     {
       name: "Vehicles",
-      image: "pics/image 1.png",
-      link: "/multimedia",
-      subcategories: [
-        ["Cars", "Bicycles", "Trucks", "Buses"],
-        ["Air Bike", "Mobility Scooters", "Motorcycles"],
-        ["Van", "Electric Scooter"]
-      ]
+      image: "pics/cat8.png",
+      link: "/Vehicles",
+      productCount: 2
     }
   ];
-  
-export default function Categories() {
+
+  const navigate = useNavigate();
+  const handleCategoryClick = (category) => {
+    navigate(category.link);
+  };
   return (
     <div>
-      <div className='post'>
-        <img src="pics/post1.png" alt="" className='img1' />
-        <div className='blur'>
+      <div id="Post">
+          <img src="pics/post1.png" width={1519} height={700} id='imgs' alt="" />
+          <div id='float'>
           <Nav />
           <div className="title">
             <h1 id='h11'>All Categories</h1>
@@ -106,13 +76,13 @@ export default function Categories() {
       <div id="containere">
         {categories.map((category, index) => (
           <div className="cats" key={index}>
-            <div id="titre">
-              <img src={category.image} alt={category.name} />
+            <div id="titre" onClick={() => handleCategoryClick(category)}>
+              <img src={category.image} alt={category.name} id='pi'/>
               <Link 
                 to={category.link} 
                 style={{
                   color: "#020053",
-                  fontSize: "40px",
+                  fontSize: "2rem",
                   fontFamily: "Abhaya Libre SemiBold",
                   marginLeft: "2%",
                   marginTop: "1%",
@@ -121,22 +91,11 @@ export default function Categories() {
               >
                 {category.name}
               </Link>
-            </div>
-            <div id="links" style={{ display: "flex" }}>
-              {category.subcategories.map((subList, subIndex) => (
-                <ul key={subIndex} style={{ listStyle: "none", marginLeft: "55px" }}>
-                  {subList.map((sub, subItemIndex) => (
-                    <li key={subItemIndex}>
-                      <Link to="#" className="souscat">{sub}</Link>
-                    </li>
-                  ))}
-                </ul>
-              ))}
+              <Link to="#" className="souscat">{category.productCount} Ads</Link>
             </div>
           </div>
         ))}
       </div>
-
       <Footer />
     </div>
   );

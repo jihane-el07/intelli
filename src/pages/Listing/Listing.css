@@ -1,26 +1,25 @@
 
-/* .post{
-    height: 650px;
-    width: 100%;
+.cards-container{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 2rem; 
+    justify-content: center; 
+    align-items: stretch; 
+    padding: 1rem;
+    margin-top: 3%;
 }
-.imgs{
-    
-    height: 550px;
-    width: 100.5%;
-} */
 #imgs{
     
     height: 550px;
     width: 100%;
 }
-#float{
+ #float{
     position: absolute;
     top: 0;
     width: 100%;
     background-size: cover;
-    /* background: linear-gradient(rgba(32, 51, 102, 0.5), rgba(112, 117, 163, 0.1)) */
-  }
-  
+  } 
+ 
 
 #lis{
     color:#F8E8DA;
@@ -44,11 +43,35 @@
     margin-top: 7%;
     margin-left: 4%;
 }
-#offer{
-    width: 20%;
+
+#offerR{
+    width: 100%;
     height: 550px;
-    position: absolute;
-    top: 230%;
+    margin-top: 5%;
+    /* position: absolute;
+    top: 230%;*/
+} 
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4%;
+    
 }
+#side{
+    display: flex;
+    flex-direction: column;
+    
+}
+.navSide {
+    width: 20%; /* Keep sidebar fixed width */
+    min-width: 250px; /* Ensures it's not too small on smaller screens */
+    background-color: #727bbca2;
+    border-radius: 0px 20px 20px 0px;
+    padding: 1% 0% 0% 0%;
+    
+}
+
+
 
 

@@ -6,9 +6,20 @@
     margin-left:10%;
     padding: 2%;
 }
+#imgs{
+    
+    height: 550px;
+    width: 100%;
+}
+ #float{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-size: cover;
+  } 
 #container2{
     width: 80%;
-    background-color:#FFF3F3 ;
+    background-color:#fff ;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 25px;
     margin-top: 6%;

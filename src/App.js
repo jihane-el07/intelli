@@ -1,44 +1,37 @@
 import './App.css';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Home from './pages/Home/Home';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Listing from './pages/Listing/Listing';
-import Nav from './Nav/Nav'
-import Footer from './Nav/Footer';
-import Multimedia from './pages/Multimedia/Multimedia';
-import { useEffect } from 'react';
 import Categories from './pages/Categories/Categories';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import Details from './pages/Details/Details';
+import HomePage from './pages/Home/Homepage';
+import Categorie from './pages/Multimedia/Categorie';
+import Adminlogin from './pages/Adminligin/Adminlogin';
+import Favorites from './pages/Favorites/Favorites';
+import Postad from './pages/Postad/Postad';
+import { useSelector } from 'react-redux';
 export default  function App() {
-  const location = useLocation();
-  useEffect(() => {
-    console.log("Current Path:", location.pathname);
-    if (location.pathname === "/listing") {
-      document.body.classList.add("listing-body");
-      document.body.classList.remove("home-body");
-    } 
-    else {
-      document.body.classList.add("home-body");
-      document.body.classList.remove("listing-body");
-    }
-  }, [location]);
+  const { token } = useSelector((state) => state.auth);
+ 
   return (
     <div className="App">
-      {location.pathname !== '/' &&location.pathname !== '/listing' &&location.pathname !== '/multimedia' &&location.pathname !== '/categories'&&location.pathname !== '/contact'&&location.pathname !== '/login' &&location.pathname !== '/signup'&& <Nav />}
-      {location.pathname !== '/' &&location.pathname !== '/listing' &&location.pathname !== '/multimedia' &&location.pathname !== '/categories'&&location.pathname !== '/contact'&&location.pathname !== '/login'&&location.pathname !== '/signup'&& <Nav />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/listing" element={<Listing/>} />
-        <Route path="/multimedia" element={<Multimedia/>} /> 
+        <Route path="/categorie/:category" element={<Categorie/>} /> 
         <Route path="/categories" element={<Categories/>} />
         <Route path="/contact" element={<Contact/>} /> 
         <Route path="/login" element={<Login/>} />   
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />      
-      </Routes>
-      {location.pathname !== '/'&&location.pathname !== '/listing' &&location.pathname !== '/multimedia' &&location.pathname !== '/categories'&& location.pathname !== '/contact'&&location.pathname !== '/login'&& location.pathname !== '/signup'&&<Footer/>}
-      {location.pathname !== '/'&&location.pathname !== '/listing' &&location.pathname !== '/multimedia' &&location.pathname !== '/categories'&& location.pathname !== '/contact'&&location.pathname !== '/login'&&location.pathname !== '/signup'&&<Footer/>}
+        <Route path="/signup" element={<Signup/>} /> 
+        <Route path="/adminlogin" element={<Adminlogin/>} /> 
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/favorites" element={token ? <Favorites /> : <Navigate to="/login" />}  />
+        <Route path="/post-ad" element={<Postad/>} />
+
+
+        </Routes>
     </div>
   );
 }

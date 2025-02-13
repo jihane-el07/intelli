@@ -1,41 +1,19 @@
 /* Container */
-#signup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f8ecec;
-}
 
 /* Form */
-#signup-form {
+/* #signup-form {
     width: 30%;
     background: #fff3f3;
     padding: 30px;
     border-radius: 15px;
     box-shadow: rgba(100, 100, 111, 0.404) 0px 7px 29px 0px;
     text-align: center;
-}
+} */
 
 /* Title */
-#signup-title {
-    color: #020053;
-    font-family: "Abhaya Libre SemiBold";
-    font-weight: bold;
-    font-size: 28px;
-}
 
-#signup-subtitle {
-    color: #ff5b5b;
-    margin-bottom: 20px;
-}
 
 /* Form Fields */
-#form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
 label {
     color: #020053;
@@ -46,18 +24,24 @@ label {
 .form-control {
     width: 100%;
     padding: 10px;
-    background-color: #fff3f3;
+    background-color: #fff;
     border: 1px solid #020053;
     border-radius: 5px;
 }
 
 /* Terms */
 .terms {
-    display: flex;
+    
     align-items: center;
     gap: 5px;
     font-size: 14px;
-    color: #020053;
+    color: #fa5252;
+    margin-left: 5%;
+    display: flex;
+}
+
+.terms label{
+    color: #fa5252;
 }
 
 .terms input {
@@ -66,7 +50,7 @@ label {
 
 /* Signup Button */
 .signup-btn {
-    width: 100%;
+    width: 30%;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -75,17 +59,21 @@ label {
     font-family: "Abhaya Libre SemiBold";
     cursor: pointer;
     margin-top: 10px;
+    margin-left: 3%;
 }
 
 .signup-btn:hover {
     background-color: #e04444;
 }
-
+#orr{
+    width: 90%;
+    margin: 0% 0% 0% 5%;
+}
 /* OR Divider */
-.or-divider {
+/* .or-divider {
     margin: 15px 0;
     color: #666;
-}
+} */
 
 /* Google Button */
 .google-btn {
@@ -109,22 +97,33 @@ label {
 
 /* Login Link */
 .login-text {
-    margin-top: 10px;
-    font-size: 14px;
+    margin: -4% 0% 0% 5%;
     color: #020053;
 }
 
 .login-text a {
     color: #fa5252;
-    text-decoration: none;
 }
-
 /* Responsive Design */
-@media (max-width: 1280px) {
+/* @media (max-width: 1280px) {
     #signup-form {
         width: 40%;
     }
-}
+    .input{
+        margin-top: -7%;
+    }
+    #orr{
+        margin-top: 0%;
+        margin-bottom: 2%;
+    }
+    #ss{
+        margin-top: -5%;
+    }
+    #formulaire{
+        height: 520px;
+        margin-top: -2%;
+    }
+} */
 
 @media (max-width: 768px) {
     #signup-form {
@@ -149,4 +148,4 @@ label {
     .google-btn {
         padding: 8px;
     }
-}
+} 

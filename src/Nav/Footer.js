@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
-import './Footer.css'; // Assuming you will create a separate CSS file for styling
-
+import './Footer.css';
+import foot from "../pics/footer.png"
 const Footer = () => {
   return (
     <footer className="footer">
@@ -65,7 +65,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <img src="pics/footer.png" id='imgfooter' alt="" />
+      <img src={foot} id='imgfooter' alt="" />
     </footer>
   );
 };

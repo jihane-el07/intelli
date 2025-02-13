@@ -7,17 +7,20 @@ import Footer from '../../Nav/Footer';
 export default function Contact() {
   return (
     <div>
-      <div className='post'>
-        <img src="pics/post1.png" alt="" className='img1' />
-        <div className='blur'>
-          <Nav />
+       <div id="Post">
+          <img src="pics/post1.png"  id='imgs' alt="" />
+          <div id='float'>
+              <Nav />
+       
           <div className="title">
-            <h1 id='h11'>Contact Us</h1>
-            <Link to="/" className='aa'>Home ---</Link>
-            <Link to='/contact' className='aa'>Contact Us</Link>
+              <h1 id='lis'>Contact Us</h1>
+              <Link to="/" className='aa'>Home ---</Link>
+              <Link to='/contact' className='aa'>Contact Us</Link>
           </div>
+                          
+          </div>
+                     
         </div>
-      </div>
 
       <div id="container">
         <iframe 
