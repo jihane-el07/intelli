@@ -206,7 +206,7 @@ const HomePage = () => {
               fontSize: 'larger',
             }}
           >
-            <Link to={'/listing'} style={{ textDecoration:'none',color:'#F8E8DA' }} >
+            <Link to={'/categories'} style={{ textDecoration:'none',color:'#F8E8DA' }} >
             {currentTranslations.viewAllCategories}
             </Link>
           </button>
@@ -295,7 +295,10 @@ const HomePage = () => {
               paddingRight: '2%',
             }}
           >
-           {currentTranslations.viewAllAds}
+            <Link to={'/listing'} style={{ textDecoration:'none',color:'#F8E8DA' }} >
+            {currentTranslations.viewAllAds}
+            </Link>
+          
           </button> 
         </div>
         <div className="card-container">
