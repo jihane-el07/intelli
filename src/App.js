@@ -10,10 +10,13 @@ import HomePage from './pages/Home/Homepage';
 import Categorie from './pages/Multimedia/Categorie';
 import Adminlogin from './pages/Adminligin/Adminlogin';
 import Favorites from './pages/Favorites/Favorites';
-import Postad from './pages/Postad/Postad';
+import Postad from "./pages/Postad/Postad";
+import YourAds from './pages/YourAds/YourAds';
 import { useSelector } from 'react-redux';
+import SettingsSidebar from './pages/SettingsSidebar/SettingsSidebar';
 export default  function App() {
   const { token } = useSelector((state) => state.auth);
+  
  
   return (
     <div className="App">
@@ -28,10 +31,10 @@ export default  function App() {
         <Route path="/adminlogin" element={<Adminlogin/>} /> 
         <Route path="/details/:id" element={<Details />} />
         <Route path="/favorites" element={token ? <Favorites /> : <Navigate to="/login" />}  />
-        <Route path="/post-ad" element={<Postad/>} />
-
-
-        </Routes>
+        <Route path="/post-ad" element={<Postad />} />
+        <Route path="/post-ad/:id" element={<Postad />} />
+        <Route path="/your-ads" element={<YourAds />} />        </Routes>
+        <SettingsSidebar/>
     </div>
   );
 }

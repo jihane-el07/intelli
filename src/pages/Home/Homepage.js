@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Nav from '../../Nav/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Footer from '../../Nav/Footer';
+import { useSelector } from 'react-redux';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [city, setCity] = useState('');
+  const [category, setCategory] = useState('');
+  const [results, setResults] = useState([]); // Store search results
+  const navigate = useNavigate();
+  const { language, translations } = useSelector((state) => state.language || {
+    language: 'en'
+  });  
+  const currentTranslations = translations?.[language] || translations?.en;
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -16,6 +25,7 @@ const HomePage = () => {
         const response = await axios.get("http://127.0.0.1:8000/api/articles");
         const filteredCards = response.data.filter(article => article.id <= 6); // Filter by id
         setProducts(filteredCards);
+       
       } catch (error) {
         console.error("Error fetching articles:", error);
         if (error.response) {
@@ -25,13 +35,50 @@ const HomePage = () => {
     };
     fetchArticles();
   }, []);
+  
+  // const handleSearch = async () => {
+  //   try {
+  //     // Create the query parameters
+  //     const params = new URLSearchParams();
+  //     if (city) params.append('city', city);
+  //     if (category) params.append('category', category);
+      
+  //     // Send the request to the API with the query parameters
+  //     const response = await axios.get(`http://127.0.0.1:8000/api/articles?${params.toString()}`);
+      
+  //     // Update the state with the filtered results
+  //     setResults(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching results:", error);
+  //   }
+  // };
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (city) params.append('city', city);
+    if (category) params.append('category', category);
+    navigate(`/listing?${params.toString()}`);
+  };
+  
+  
+    
+  
+  // const handleSearch = () => {
+  //   const params = new URLSearchParams();
+  //   if (city) params.append('city', city);
+  //   if (category) params.append('category', category);
+  //   navigate(`/listing?${params.toString()}`);
+  // };
 
   return (
     <div id="Post">
-      <img src="pics/post2.png" width={1519} height={600} id='imgss' alt="" />
+      <img src="pics/post3.png" width={1519} height={700} id='imgss' alt="" />
       <div id='float'>
         <Nav />
         <div id="search">
+          <div className="hero-container">
+            <h1 className="hero-title"><span id='wel'>{currentTranslations.welcome}</span> {currentTranslations.toint}</h1>
+            <p className="hero-subtitle" dangerouslySetInnerHTML={{ __html: currentTranslations.subtitle }}></p>
+          </div>
           <button
             style={{
               width: '200px',
@@ -49,7 +96,7 @@ const HomePage = () => {
           >
             <Link to={'/listing'} style={{ textDecoration:'none',color:'#F8E8DA' }} >
 
-            Browse Ads
+            {currentTranslations.browseAds}
             </Link>
 
           </button>
@@ -68,7 +115,7 @@ const HomePage = () => {
             className='postad'
           >
           <Link to={'/post-ad'} style={{ textDecoration:'none' ,color: '#E31616'}} >
-            Post an Ad
+            {currentTranslations.postAd}
           </Link>
           </button>
         </div>
@@ -87,8 +134,10 @@ const HomePage = () => {
                 backgroundColor: '#F8E8DA',
                 paddingLeft: '50px',
               }}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             >
-              <option value="">Select a City</option>
+              <option value="">{currentTranslations.selectCity}</option>
               <option value="Tanger">Tanger</option>
               <option value="Rabat">Rabat</option>
               <option value="Fes">Fès</option>
@@ -107,10 +156,18 @@ const HomePage = () => {
                 backgroundColor: '#F8E8DA',
                 paddingLeft: '50px',
               }}
+              value={category}
+          onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="">Select a Category</option>
-              <option value="Multimedia">Multimedia</option>
-              <option value="Other">Other</option>
+                <option value="" >{currentTranslations.selectCategory}</option>
+                <option value="Multimedia">Multimedia</option>
+                <option value="Household Appliances">Household Appliances</option>
+                <option value="Sport">Sport</option>
+                <option value="Pets">Pets</option>
+                <option value="Home And Garden">Home And Garden</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Work And Study">Work And Study</option>
+                <option value="Vehicles">Vehicles</option>
             </select>
            
             <button
@@ -124,8 +181,9 @@ const HomePage = () => {
                 border: 'none',
                 fontSize: 'larger',
               }}
+              onClick={handleSearch}
             >
-              Search
+              {currentTranslations.search}
             </button>
           </div>
           
@@ -134,7 +192,7 @@ const HomePage = () => {
       {/* Popular Categories */}
       <div id="cat">
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h1 style={{ color: '#020053', fontFamily: 'Abhaya Libre SemiBold', marginLeft: '5%' }}>Popular Categories</h1>
+          <h1 style={{ color: '#020053', fontFamily: 'Abhaya Libre SemiBold', marginLeft: '5%' }}>{currentTranslations.popularCategories}</h1>
           <button
             style={{
               width: '200px',
@@ -149,8 +207,7 @@ const HomePage = () => {
             }}
           >
             <Link to={'/listing'} style={{ textDecoration:'none',color:'#F8E8DA' }} >
-            View All Categories
-
+            {currentTranslations.viewAllCategories}
             </Link>
           </button>
         </div>
@@ -221,7 +278,7 @@ const HomePage = () => {
       <div className="containerr">
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <h1 style={{ color: '#020053', fontFamily: 'Abhaya Libre SemiBold', marginLeft: '5%' }}>
-            Recently Published Ads
+            {currentTranslations.recentAds}
           </h1>
           <button
             style={{
@@ -238,7 +295,7 @@ const HomePage = () => {
               paddingRight: '2%',
             }}
           >
-            View All Ads
+           {currentTranslations.viewAllAds}
           </button> 
         </div>
         <div className="card-container">
@@ -260,7 +317,7 @@ const HomePage = () => {
       <div className="containerr">
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <h1 style={{ color: '#020053', fontFamily: 'Abhaya Libre SemiBold', marginLeft: '5%' }}>
-            Popular and Featurad Ads
+            {currentTranslations.featuredAds}
           </h1>
         </div>
         <div className="card-container slider">
@@ -282,7 +339,7 @@ const HomePage = () => {
       <div>
         <div>
           <h1 className="hero-heading">
-            IntilliAnnounce <br /> Here for You
+            {currentTranslations.hereForYou}
           </h1>
         </div>
 
@@ -293,12 +350,10 @@ const HomePage = () => {
               <img src="pics/c6.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">Sell Your Item Safely</h1>
+              <h1 className="feature-title">{currentTranslations.sellSafely}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+              {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
 
@@ -307,12 +362,10 @@ const HomePage = () => {
               <img src="pics/c1.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">Buy Directly</h1>
+              <h1 className="feature-title">{currentTranslations.buyDirectly}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+              {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
 
@@ -321,12 +374,10 @@ const HomePage = () => {
               <img src="pics/c2.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">Friendly Platform</h1>
+              <h1 className="feature-title">{currentTranslations.friendlyPlatform}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+              {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
         </div>
@@ -337,12 +388,10 @@ const HomePage = () => {
               <img src="pics/c3.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">Pay in Person</h1>
+              <h1 className="feature-title">{currentTranslations.payInPerson}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+              {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
 
@@ -351,12 +400,10 @@ const HomePage = () => {
               <img src="pics/c4.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">24/7 Support</h1>
+              <h1 className="feature-title">{currentTranslations.support247}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+              {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
 
@@ -365,12 +412,10 @@ const HomePage = () => {
               <img src="pics/c5.png" alt="" width="100%" />
             </div>
             <div>
-              <h1 className="feature-title">Verified Users</h1>
+              <h1 className="feature-title">{currentTranslations.verifiedUsers}</h1>
               <h3 className="feature-description">
-                Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr,
-                sed
+               {currentTranslations.featureDesc}
               </h3>
-              <h3 className="feature-link">Read More</h3>
             </div>
           </div>
         </div>
@@ -378,9 +423,9 @@ const HomePage = () => {
         {/* Join Us Section */}
         <div>
           <h1 className="join-heading">
-            You want join us <br /> and sell your products?
+            {currentTranslations.joinUsTitle}
           </h1>
-          <h3 className="join-subheading">Just 4 easy steps</h3>
+          <h3 className="join-subheading">{currentTranslations.joinUsSubtitle}</h3>
         </div>
 
         <div className="step-section">
@@ -394,9 +439,9 @@ const HomePage = () => {
               />
             </div>
             <div>
-              <h1 className="step-title">Create your Account</h1>
+              <h1 className="step-title">{currentTranslations.createAccount}</h1>
               <h3 className="step-description">
-                create your account <br /> for free
+                {currentTranslations.accountDesc}
               </h3>
             </div>
           </div>
@@ -411,9 +456,9 @@ const HomePage = () => {
               />
             </div>
             <div>
-              <h1 className="step-title">Choose Product</h1>
+              <h1 className="step-title">{currentTranslations.chooseProduct}</h1>
               <h3 className="step-description">
-                choose any product <br /> you to sell
+                {currentTranslations.productDesc}
               </h3>
             </div>
           </div>
@@ -428,9 +473,9 @@ const HomePage = () => {
               />
             </div>
             <div>
-              <h1 className="step-title">Fill the form</h1>
+              <h1 className="step-title">{currentTranslations.fillForm}</h1>
               <h3 className="step-description">
-                fill up the form for <br /> create an announce
+               {currentTranslations.formDesc}
               </h3>
             </div>
           </div>
@@ -445,9 +490,9 @@ const HomePage = () => {
               />
             </div>
             <div>
-              <h1 className="step-title">Post Them</h1>
+              <h1 className="step-title">{currentTranslations.postAnnounce}</h1>
               <h3 className="step-description">
-                And finally post your <br /> announce successfully
+                {currentTranslations.postDesc}
               </h3>
             </div>
           </div>

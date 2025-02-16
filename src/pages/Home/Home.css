@@ -5,11 +5,39 @@
   background-size: cover;
   /* background: linear-gradient(rgba(32, 51, 102, 0.5), rgba(112, 117, 163, 0.1)) */
 }
+.hero-container {
+  padding: 40px 20px;
+  /* margin: 20px auto; */
+  margin-left:25%;
+  width: 800px;
+  font-family: Abhaya Libre SemiBold;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  color: #020053;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+#wel{
+  font-weight: bolder;
+  font-size: 4rem;
+  color: #ffffff;
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #020053;
+  line-height: 1.6;
+  font-weight: bolder;
+  max-width: 600px;
+}
 #p::placeholder{
   color: #E31616;
 }
 #search{
-  margin-top: 17%;
+  margin-top: 5%;
 }
 #searchbar{
   background-color: #e31616aa;
@@ -47,12 +75,14 @@
   width: 100%;
   margin-top: 5%;
   padding: 2%;
+ 
 }
 .containerr{
   box-shadow: rgba(119, 119, 130, 0.447) 0px 7px 29px 0px;
   width: 100%;
   margin-top: 5%;
   padding: 2%;
+ 
 }
 
 .card-container {
@@ -236,21 +266,3 @@
   text-align: left;
   width: 100%;
 }
-@media screen and (max-width:1280px){
-  #imgss{
-    background-size: cover;
-    width: 100.5%;
-  }
-  #float{
-    width: 100.5%;
-  }
-  #search{
-    margin-top: 20%;
-    width: max-content;
-    margin-left: -5%;
-  }
-  .imgcat{
-    width: 180px;
-  }
-
-} 

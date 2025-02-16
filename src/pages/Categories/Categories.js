@@ -8,49 +8,49 @@ export default function Categories() {
     {
       name: "Multimedia",
       image: "pics/cat1.png",
-      link: "/Multimedia",
-      productCount: 10
+      link: "/categorie/Multimedia",
+  
     },
     {
       name: "Household Appliances",
       image: "pics/cat2.png",
-      link: "/Household Appliances",
+      link: "/categorie/Household Appliances",
       productCount: 1
     },
     {
       name: "Sport",
       image: "pics/cat3.png",
-      link: "/Sport",
+      link: "/categorie/Sport",
       productCount: 1
     },
     {
       name: "Pets",
       image: "pics/cat4.png",
-      link: "/Pets",
+      link: "/categorie/Pets",
       productCount: 2
     },
     {
       name: "Home And Garden",
       image: "pics/cat5.png",
-      link: "/Home And Garden",
+      link: "/categorie/Home And Garden",
       productCount: 2
     },
     {
       name: "Clothes",
       image: "pics/cat6.png",
-      link: "/Clothes",
+      link: "/categorie/Clothes",
       productCount: 2
     },
     {
       name: "Work And Study",
       image: "pics/cat7.png",
-      link: "/Work And Study",
+      link: "/categorie/Work And Study",
       productCount: 1
     },
     {
       name: "Vehicles",
       image: "pics/cat8.png",
-      link: "/Vehicles",
+      link: "/categorie/Vehicles",
       productCount: 2
     }
   ];

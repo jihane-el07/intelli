@@ -130,7 +130,7 @@ export default function Nav() {
                 className="nav-link" 
                 id="b11" 
                 style={{ color: "#F8E8DA", width: "80%", fontSize: "22px" }} 
-                to="/post-ad"
+                to={'/post-ad'}
                 onClick={handlePostAdClick}
               >
                 Post Ads

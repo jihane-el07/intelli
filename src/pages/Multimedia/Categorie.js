@@ -13,7 +13,7 @@ export default function Categorie() {
     const { category } = useParams();
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/categorie/${category}`)
+        axios.get(`http://127.0.0.1:8000/api/articles/categorie/${category}`)
             .then(response => setCards(response.data))
             .catch(error => console.error("Erreur :", error));
     }, [category]);

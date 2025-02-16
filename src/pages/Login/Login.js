@@ -34,7 +34,7 @@ export default function Login() {
 
   return (
     <div id="imgcont">
-      <img src="pics/login.png" className="imge" alt="Login background" />
+      <img src="pics/login1.png" className="imge" alt="Login background" />
       <div id="divup">
         <Link className="navbar-brand" to="/">
           <img src="pics/logoo.png" alt="Logo" />

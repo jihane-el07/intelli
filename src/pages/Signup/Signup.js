@@ -55,7 +55,7 @@ export default function Signup() {
 
   return (
     <div id="imgcont">
-      <img src="pics/singup.png" className="imge" alt="Signup background" />
+      <img src="pics/singup1.png" className="imge" alt="Signup background" />
       <div id="divup">
         <Link className="navbar-brand" to="/">
           <img src="pics/logoo.png" alt="Logo" />

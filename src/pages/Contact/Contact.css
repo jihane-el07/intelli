@@ -1,25 +1,12 @@
 #container{
     width: 80%;
-    background-color:#FFF3F3 ;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 25px;
     margin-left:10%;
     padding: 2%;
 }
-#imgs{
-    
-    height: 550px;
-    width: 100%;
-}
- #float{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    background-size: cover;
-  } 
 #container2{
     width: 80%;
-    background-color:#fff ;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 25px;
     margin-top: 6%;
@@ -37,10 +24,11 @@
     color: #010053a0;
 }
 .form-control{
-    padding-left: 70px;
+    padding-left: 70px; 
+    background-color: rgb(255, 255, 255);
 }
 .b1{
-    width:30%;
+    width:50%;
     padding: 10px;
     border-radius: 25px;
     background-color: #E31616;
